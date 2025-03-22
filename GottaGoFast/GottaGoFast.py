@@ -3,7 +3,8 @@
 # Description: A speed reader script
 
 import tkinter as tk  # For displaying text in GUI
-
+import os
+import argparse
 
 # Globals
 is_paused = False  # Pause toggle
@@ -11,14 +12,18 @@ current_index = 0  # Track current word index
 
 
 # Function to load and process the file
+# Function to load and process the file
 def load_file(file_path):
+    if not os.path.exists(file_path):
+        error_label.config(text=f"Error: The file '{file_path}' does not exist.\nPlease restart with a valid file path.")
+        return []
     try:
         with open(file_path, "r", encoding="utf-8") as file:
             content = file.read()
             words = content.split()
             return words
-    except FileNotFoundError:
-        print("Error: File not found.")
+    except Exception as e:
+        error_label.config(text=f"Error: {e}\nPlease restart with a valid file path.")
         return []
 
 
@@ -86,6 +91,19 @@ def restart():
     is_paused = True
 
 
+# Command-line argument parsing
+def parse_arguments():
+    parser = argparse.ArgumentParser(description="Speed reading tool.")
+    parser.add_argument("file", metavar="FILE", type=str, help="Path to the text file")
+    args = parser.parse_args()
+
+    # If no file path is passed, show error and return None
+    if not args.file:
+        error_label.config(text="Error: You must provide a file path/name to read.\nPlease restart with the correct argument.")
+        return None
+    return args.file
+
+
 # Initialize GUI window
 root = tk.Tk()
 root.title("Speed Reading Tool")
@@ -100,6 +118,10 @@ text_widget.tag_configure("red", foreground="red")
 # Create a tag to center text
 text_widget.tag_configure("center", justify="center")
 
+# Add an error label at the top of the window
+error_label = tk.Label(root, text="", font=("Helvetica", 12), fg="red")
+error_label.pack()
+
 pause_button = tk.Button(root, text="Pause/Resume", command=toggle_pause)
 pause_button.pack()
 
@@ -111,8 +133,11 @@ speed_slider = tk.Scale(root, from_=10, to_=1000, orient="horizontal", label="Sp
 speed_slider.set(500)  # Default speed
 speed_slider.pack()
 
+# Parse the file path argument
+file_path = parse_arguments()
+
 # Load words from file
-words = load_file("AliceInWonderland.txt")
+words = load_file(file_path)
 
 # Start reading the file after 1 second
 if words:
