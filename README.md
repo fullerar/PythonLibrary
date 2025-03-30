@@ -1,15 +1,36 @@
-# PythonLibrary
-A collection of Python scripts that do various individual tasks. More so fun small projects to tinker with.
 
-GottaGoFast
-  Usage:
-  - python GottaGoFast.py <path/to/text.txt>
+🏃‍♂️ GottaGoFast
+A lightweight Python speed-reading tool that displays one word at a time in a simple GUI, with the middle letter highlighted for better eye tracking. Great for experimenting with speed-reading techniques using your favorite books or text files.
 
-  About:
-  - Singular script that reads in a text file (idealy a book, which you can find many for free on https://www.gutenberg.org/).
-  - Script then opens a simple GUI will start displaying one word at a time, starting from the first word in the text file.
-  - The middle letter of each word will be highlighted red in order to help keep your eyes focused.
-  - Once focused, you may try increasing the speed at which the words are displayed. 10ms-1000ms.
-  - This allows you to speed read large sections of text. The trick is to retain the words read, but that you will have to work on on your own.
+🚀 Features
+Reads and parses a plain .txt file (ideal for books).
 
-  DISCLAIMER: A copy of Alice in Wonderland by Lewis Caroll is included in this folder simply for demonstration purposes, which was downloaded from https://www.gutenberg.org/. I do not claim ownership of any work that is found in that text file.
+Displays one word at a time in a minimalist GUI.
+
+Highlights the middle letter in red to help maintain visual focus.
+
+Adjustable speed: 10ms to 1000ms per word.
+
+Great for testing or improving your speed-reading abilities.
+
+📦 How to Use
+bash
+Copy
+Edit
+python GottaGoFast.py path/to/your/text.txt
+You’ll see a GUI window open and start cycling through words from your file.
+
+📘 Example Book
+A copy of Alice in Wonderland by Lewis Carroll is included for demonstration purposes. It was sourced from Project Gutenberg — a fantastic place to find free public domain books.
+
+📌 Disclaimer: I do not claim ownership of any text from the included book file. It is provided solely for testing and educational use.
+
+🛠️ Requirements
+Python 3.x
+
+tkinter (standard in most Python installations)
+
+💡 Notes
+This is a fun personal project — more for tinkering than production use.
+
+The real challenge isn’t speed — it’s retention. Practice makes progress!
