@@ -1,62 +1,52 @@
-# 🏃‍♂️ GottaGoFast
+# 🐍 Python Project Collection
 
-**A lightweight Python speed-reading tool** that displays one word at a time in a simple GUI, with the middle letter highlighted for better eye tracking. Great for experimenting with speed-reading techniques using your favorite books or text files.
-
----
-
-## 🚀 Features
-
-- Reads and parses a plain `.txt` file (ideal for books).
-- Displays one word at a time in a minimalist GUI.
-- Highlights the **middle letter** in red to help maintain visual focus.
-- Adjustable speed: **10ms to 1000ms per word**.
-- Great for testing or improving your speed-reading abilities.
+A personal collection of small Python projects and scripts — each in its own folder with its own README and purpose. This repo serves as a sandbox for experimentation, fun, and learning.
 
 ---
 
-## 📆 How to Use
+## 📁 Structure
+
+Each subfolder contains a self-contained mini-project:
 
 ```bash
-python GottaGoFast.py path/to/your/text.txt
+/
+├── GottaGoFast/        # Speed reading GUI using tkinter
+│   └── README.md
+├── SomeOtherProject/   # Placeholder for your next cool idea
+│   └── README.md
+├── AnotherTool/        # Utility script or small tool
+│   └── README.md
+└── ...                # More to come!
 ```
 
-You’ll see a GUI window open and start cycling through words from your file.
+Each folder includes its own README and instructions.
 
 ---
 
-## 📘 Example Book
+## 🎯 Goals
 
-A copy of *Alice in Wonderland* by Lewis Carroll is included for demonstration purposes. It was sourced from [Project Gutenberg](https://www.gutenberg.org/) — a fantastic place to find free public domain books.
-
-📌 **Disclaimer**: I do not claim ownership of any text from the included book file. It is provided solely for testing and educational use.
+- Explore and practice Python scripting
+- Tinker with interesting ideas or challenges
+- Keep all small tools/projects in one place
+- Evolve into a useful library of reusable code
 
 ---
 
-## 💠 Requirements
+## 🧰 Tech Used
 
 - Python 3.x
-- `tkinter` (standard in most Python installations)
+- tkinter, pandas, requests, etc. (varies by project)
 
 ---
 
-## 💡 Notes
+## 📌 Notes
 
-- This is a fun personal project — more for tinkering than production use.
-- The real challenge isn’t speed — it’s **retention**. Practice makes progress!
-
----
-
-## ✨ Future Ideas
-
-- Add pause/resume functionality
-- Load files via file picker GUI
-- Dark mode / color themes
-- Word grouping or sentence chunking mode
+- These projects are meant for personal learning and fun.
+- Many are experimental — expect rough edges!
+- If you find something useful or want to contribute, feel free!
 
 ---
 
 ## 📄 License
 
-MIT License. See `LICENSE` file for details.
-
-
+MIT License — see each project folder for individual license or usage details.
