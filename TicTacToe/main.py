@@ -36,11 +36,41 @@ def player_input():
             space_choice = True
             taken_spaces.add(int(space))
 
-
     print(f"acceptable: {acceptable_spaces}")
     print(f"taken: {taken_spaces}")
 
     return marker
 
 
-player_input()
+def place_marker(board, marker, position):
+    board[position] = marker
+    taken_spaces.add(position)
+
+    display_board(board)
+
+
+def win_check(board, mark):
+    display_board(board)
+
+    winning_sets = [{1, 2, 3}, {1, 5, 9}, {1, 4, 7},
+                    {2, 5, 8},
+                    {3, 5, 7}, {3, 6, 9},
+                    {4, 5, 6}]
+
+    trio_counter = 0
+    for trio in winning_sets:
+        print(f"current trio to examine: {trio}")
+        for position in trio:
+            print(f"current position: {position}. Contains: {board[position]}")
+            if board[position] == mark:
+                trio_counter += 1
+        if trio_counter == 3:
+            return True
+        else:
+            trio_counter = 0
+
+    return False
+
+test_board = ['#', ' ', 'X', ' ', ' ', 'X', ' ', ' ', 'X', ' ']
+
+print(win_check(test_board, "X"))
