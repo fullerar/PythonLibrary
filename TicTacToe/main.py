@@ -71,6 +71,6 @@ def win_check(board, mark):
 
     return False
 
-test_board = ['#', ' ', 'X', ' ', ' ', 'X', ' ', ' ', 'X', ' ']
 
+test_board = ['#', ' ', 'X', ' ', ' ', 'X', ' ', ' ', 'X', ' ']
 print(win_check(test_board, "X"))
