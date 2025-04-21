@@ -84,5 +84,18 @@ def choose_first():
         return 2
 
 
-print(choose_first())
+def replay():
+    acceptable_responses = ["Y", "N"]
+    waiting = True
+    while waiting:
+        play_again_bool = input("Do you wish to play again? (Y/N) ")
+        if play_again_bool.isalpha() and play_again_bool in acceptable_responses:
+            if play_again_bool is "Y":
+                return True
+            else:
+                return False
+        else:
+            print("Invalid entry...")
 
+
+print(replay())
