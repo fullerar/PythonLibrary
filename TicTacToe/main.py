@@ -1,4 +1,5 @@
 from IPython.display import clear_output
+import random
 
 taken_spaces = set()
 
@@ -72,5 +73,16 @@ def win_check(board, mark):
     return False
 
 
-test_board = ['#', ' ', 'X', ' ', ' ', 'X', ' ', ' ', 'X', ' ']
-print(win_check(test_board, "X"))
+#test_board = ['#', ' ', 'X', ' ', ' ', 'X', ' ', ' ', 'X', ' ']
+#print(win_check(test_board, "X"))
+
+def choose_first():
+    first_player = random.randint(1,2)
+    if first_player is 1:
+        return 1
+    else:
+        return 2
+
+
+print(choose_first())
+
