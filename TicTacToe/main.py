@@ -2,6 +2,7 @@ from IPython.display import clear_output
 import random
 
 taken_spaces = set()
+board = ['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 
 
 def display_board(board):
@@ -14,11 +15,15 @@ def display_board(board):
     print(' ' * 3 + '|' + ' ' * 3 + '|' + ' ' * 3)
 
 
-# test_board = ['#', 'X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X']
-# display_board(test_board)
+def place_marker(board, marker, position):
+    board[int(position)] = marker
+    taken_spaces.add(int(position))
+
+    display_board(board)
+
 
 def player_input():
-    global taken_spaces
+    global taken_spaces, board
     marker_choice = False
     acceptable_markers = ['X', 'O']
     while not marker_choice:
@@ -33,26 +38,18 @@ def player_input():
     acceptable_spaces = spaces.difference(taken_spaces)
     while not space_choice:
         space = input("Please pick a space (1-9): ")
-        if space.isnumeric() and space not in taken_spaces:
-            space_choice = True
-            taken_spaces.add(int(space))
-
-    print(f"acceptable: {acceptable_spaces}")
-    print(f"taken: {taken_spaces}")
-
-    return marker
-
-
-def place_marker(board, marker, position):
-    board[position] = marker
-    taken_spaces.add(position)
-
-    display_board(board)
+        if space.isnumeric():
+            if space not in taken_spaces:
+                space_choice = True
+                #taken_spaces.add(int(space))
+                place_marker(board, marker, space)
+            else:
+                print("That spot is taken...")
+        else:
+            print("Invalid entry...")
 
 
 def win_check(board, mark):
-    display_board(board)
-
     winning_sets = [{1, 2, 3}, {1, 5, 9}, {1, 4, 7},
                     {2, 5, 8},
                     {3, 5, 7}, {3, 6, 9},
@@ -60,9 +57,7 @@ def win_check(board, mark):
 
     trio_counter = 0
     for trio in winning_sets:
-        print(f"current trio to examine: {trio}")
         for position in trio:
-            print(f"current position: {position}. Contains: {board[position]}")
             if board[position] == mark:
                 trio_counter += 1
         if trio_counter == 3:
@@ -73,15 +68,18 @@ def win_check(board, mark):
     return False
 
 
-#test_board = ['#', ' ', 'X', ' ', ' ', 'X', ' ', ' ', 'X', ' ']
-#print(win_check(test_board, "X"))
-
 def choose_first():
-    first_player = random.randint(1,2)
-    if first_player is 1:
+    n = random.randint(1, 2)
+    if n is 1:
         return 1
     else:
         return 2
+
+
+def tie_check():
+    full_set = set(range(1, 10))
+    if taken_spaces == full_set:
+        return True
 
 
 def replay():
@@ -98,4 +96,34 @@ def replay():
             print("Invalid entry...")
 
 
-print(replay())
+print("Welcome to Tic Tac Toe!")
+playing = True
+while playing:
+    first_player = choose_first()
+    print(f"Player {first_player} will go first!")
+    print(f"Here is the board. Player {first_player}, you may begin.")
+    display_board(board)
+
+    game_won = False
+    tie = False
+    while not game_won and not tie:
+        player_input()
+
+        if win_check(board, "X"):
+            print("X's win!")
+            game_won = True
+        if win_check(board, "O"):
+            print("O's win!")
+            game_won = True
+        if tie_check():
+            print("Tie game!")
+            tie = True
+
+    if game_won or tie_check():
+        playing = replay()
+        if playing:
+            taken_spaces = set()
+            board = ['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+        else:
+            print("Good game!")
+
